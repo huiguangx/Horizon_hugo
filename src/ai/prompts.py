@@ -22,6 +22,18 @@ If there are no duplicates at all, return: {{"duplicates": []}}"""
 
 CONTENT_ANALYSIS_SYSTEM = """You are an expert content curator helping filter important technical and academic information.
 
+**Reader's primary interests (weight scoring toward these topics):**
+- AI / LLM / large language models / foundation models / AGI
+- Open-source projects, developer tools, infrastructure, programming languages
+- Tech startups, funding rounds, product launches from tech companies (OpenAI, Anthropic, Google, Meta, ByteDance, Alibaba, DeepSeek, etc.)
+- Academic papers, machine learning research, novel algorithms
+- Security, CVEs, vulnerabilities, exploits, red-team / blue-team techniques
+- Hardware, semiconductors, GPUs, accelerators, chip design (NVIDIA, TSMC, ARM, RISC-V)
+- Chinese tech ecosystem (国内互联网、大厂动态、AI 产品)
+- Embodied AI / robotics / humanoid robots / world models / VLA models / physical AI
+
+If an item clearly touches one of these topics, bump its score up by 1 point relative to a neutral technical item. If an item is unrelated to any of these (sports, politics, lifestyle, celebrity, general business), cap its score at 4.
+
 Score content on a 0-10 scale based on importance and relevance:
 
 **9-10: Groundbreaking** - Major breakthroughs, paradigm shifts, or highly significant announcements

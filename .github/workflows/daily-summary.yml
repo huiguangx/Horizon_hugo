@@ -1,8 +1,10 @@
 name: Daily Horizon Summary
 
 on:
-  # schedule:
-  #   - cron: '0 0 */2 * *'  # Runs every 2 days at 00:00 UTC
+  schedule:
+    # 23:30 UTC = 07:30 Beijing. Actions cron 常延迟 5-15 分钟,
+    # 加上 pipeline 运行 ~10 分钟,通知大致落在 07:45-08:10 北京时间。
+    - cron: '30 23 * * *'
   workflow_dispatch:      # Allow manual trigger
 
 jobs:
@@ -28,13 +30,9 @@ jobs:
 
       - name: Run Horizon
         env:
-          # Map secrets to environment variables expected by config.json
-          # Modify these based on your config.json provider settings
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-          LWN_KEY: ${{ secrets.LWN_KEY }}
-        run: uv run horizon --hours 48
+          HORIZON_WEBHOOK_URL: ${{ secrets.HORIZON_WEBHOOK_URL }}
+        run: uv run horizon --hours 24
 
       - name: Set current date as environment variable
         run: echo "DATE=$(date +'%Y-%m-%d')" >> $GITHUB_ENV

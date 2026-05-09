@@ -55,12 +55,6 @@
         "url": "https://mshibanami.github.io/GitHubTrendingRSS/daily/all.xml",
         "enabled": true,
         "category": "github-trending"
-      },
-      {
-        "name": "LWN.net",
-        "url": "https://lwn.net/headlines/full_text?key=${LWN_KEY}",
-        "enabled": true,
-        "category": "linux-kernel"
       }
     ],
     "reddit": {
@@ -97,11 +91,8 @@
       ]
     },
     "twitter": {
-      "enabled": true,
-      "users": [
-        "karpathy",
-        "roifex"
-      ],
+      "enabled": false,
+      "users": [],
       "fetch_limit": 10,
       "fetch_reply_text": false,
       "max_replies_per_tweet": 3,
@@ -134,7 +125,7 @@
         "header": {
           "title": {
             "tag": "plain_text",
-            "content": "#{message_title}"
+            "content": "Horizon #{message_title}"
           },
           "template": "blue"
         },
